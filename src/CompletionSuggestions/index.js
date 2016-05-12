@@ -257,7 +257,7 @@ export default function (addModifier, Entry, suggestionsThemeKey) {
           {
             this.props.suggestions.map((completion, index) => (
               <Entry
-                key={ completion.get('name') }
+                key={ index }
                 onCompletionSelect={ this.onCompletionSelect }
                 onCompletionFocus={ this.onCompletionFocus }
                 isFocused={ this.state.focusedOptionIndex === index }
