@@ -20,6 +20,12 @@ export default function (addModifier, Entry, suggestionsThemeKey) {
       focusedOptionIndex: 0,
     };
 
+    componentWillReceiveProps(nextProps) {
+      if (nextProps.suggestions.size === 0 && this.state.isActive) {
+        this.closeDropdown();
+      }
+    }
+
     componentWillMount() {
       this.key = genKey();
       this.props.callbacks.onChange = this.onEditorStateChange;
