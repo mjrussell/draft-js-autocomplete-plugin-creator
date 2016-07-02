@@ -20,15 +20,15 @@ export default function (addModifier, Entry, suggestionsThemeKey) {
       focusedOptionIndex: 0,
     };
 
+    componentWillMount() {
+      this.key = genKey();
+      this.props.callbacks.onChange = this.onEditorStateChange;
+    }
+
     componentWillReceiveProps(nextProps) {
       if (nextProps.suggestions.size === 0 && this.state.isActive) {
         this.closeDropdown();
       }
-    }
-
-    componentWillMount() {
-      this.key = genKey();
-      this.props.callbacks.onChange = this.onEditorStateChange;
     }
 
     componentDidUpdate = (prevProps, prevState) => {
@@ -50,6 +50,7 @@ export default function (addModifier, Entry, suggestionsThemeKey) {
           prevState,
           props: this.props,
           state: this.state,
+          popover: this.refs.popover,
         });
         Object.keys(newStyles).forEach((key) => {
           this.refs.popover.style[key] = newStyles[key];
@@ -77,6 +78,7 @@ export default function (addModifier, Entry, suggestionsThemeKey) {
 
       // get the current selection
       const selection = editorState.getSelection();
+      const anchorKey = selection.getAnchorKey();
       const anchorOffset = selection.getAnchorOffset();
 
       // the list should not be visible if a range is selected or the editor has no focus
@@ -86,11 +88,13 @@ export default function (addModifier, Entry, suggestionsThemeKey) {
       const offsetDetails = searches.map((offsetKey) => decodeOffsetKey(offsetKey));
 
       // a leave can be empty when it is removed due e.g. using backspace
-      const leaves = offsetDetails.map(({ blockKey, decoratorKey, leafKey }) => (
-        editorState
-        .getBlockTree(blockKey)
-        .getIn([decoratorKey, 'leaves', leafKey])
-      ));
+      const leaves = offsetDetails
+        .filter(({ blockKey }) => blockKey === anchorKey)
+        .map(({ blockKey, decoratorKey, leafKey }) => (
+          editorState
+            .getBlockTree(blockKey)
+            .getIn([decoratorKey, 'leaves', leafKey])
+        ));
 
       // if all leaves are undefined the popover should be removed
       if (leaves.every((leave) => leave === undefined)) {
@@ -99,20 +103,20 @@ export default function (addModifier, Entry, suggestionsThemeKey) {
 
       // Checks that the cursor is after the 'autocomplete' character but still somewhere in
       // the word (search term). Setting it to allow the cursor to be left of
-      // the 'autocomplete' causes troubles due selection confusion.
+      // the 'autocomplete character' causes troubles due selection confusion.
       const selectionIsInsideWord = leaves
-      .filter((leave) => leave !== undefined)
-      .map(({ start, end }) => (
-        start === 0 && anchorOffset === 1 && anchorOffset <= end || // @ is the first character
-        anchorOffset > start + 1 && anchorOffset <= end // @ is in the text or at the end
-      ));
+        .filter((leave) => leave !== undefined)
+        .map(({ start, end }) => (
+          start === 0 && anchorOffset === 1 && anchorOffset <= end || // @ is the first character
+          anchorOffset > start + 1 && anchorOffset <= end // @ is in the text or at the end
+        ));
 
       if (selectionIsInsideWord.every((isInside) => isInside === false)) return removeList();
 
       this.activeOffsetKey = selectionIsInsideWord
-      .filter(value => value === true)
-      .keySeq()
-      .first();
+        .filter(value => value === true)
+        .keySeq()
+        .first();
 
       this.onSearchChange(editorState, selection);
 
@@ -228,6 +232,10 @@ export default function (addModifier, Entry, suggestionsThemeKey) {
       this.setState({
         isActive: true,
       });
+
+      if (this.props.onOpen) {
+        this.props.onOpen();
+      }
     };
 
     closeDropdown = () => {
@@ -244,6 +252,10 @@ export default function (addModifier, Entry, suggestionsThemeKey) {
       this.setState({
         isActive: false,
       });
+
+      if (this.props.onClose) {
+        this.props.onClose();
+      }
     };
 
     render() {
