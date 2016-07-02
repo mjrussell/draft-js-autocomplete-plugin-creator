@@ -1,6 +1,6 @@
 {
   "name": "draft-js-complete-plugin-creator",
-  "version": "1.0.1",
+  "version": "0.1.0",
   "description": "AutoComplete Plugin Creator for Draft JS Plugins",
   "author": {
     "name": "Matt Russell",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/draft-js-plugins/draft-js-plugins.git"
+    "url": "https://github.com/mjrussell/draft-js-complete-plugin-creator.git"
   },
   "main": "lib/index.js",
   "keywords": [
