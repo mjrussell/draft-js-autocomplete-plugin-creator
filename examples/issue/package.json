@@ -1,0 +1,19 @@
+{
+  "name": "issue-plugin-example",
+  "version": "0.0.0",
+  "dependencies": {
+    "draft-js-plugins-editor": "^1.1.0"
+  },
+  "devDependencies": {
+    "css-loader": "^0.23.1",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "html-webpack-plugin": "^2.22.0",
+    "node-sass": "^3.8.0",
+    "sass-loader": "^4.0.0",
+    "style-loader": "^0.13.1",
+    "webpack-dev-server": "^1.14.1"
+  },
+  "scripts": {
+    "start": "webpack-dev-server --config webpack.config.babel.js --progress"
+  }
+}
