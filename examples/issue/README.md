@@ -7,6 +7,7 @@ is selected. Instead, it simply inserts `#` followed by the issue number in plai
 up again if the cursor is over the issue number, just like Github Issues.
 
 To view the example:
+
 1. `npm install`
 2. `npm start`
 3. Browse to http://localhost:8080
