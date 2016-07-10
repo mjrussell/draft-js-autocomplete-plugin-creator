@@ -8,6 +8,7 @@ up again if the cursor is over the issue number, just like Github Issues.
 
 To view the example:
 
-1. `npm install`
-2. `npm start`
+1. `npm install` in the root directory of the project (up one folder)
+1. `npm install` in this folder
+2. `npm start` in this foler
 3. Browse to http://localhost:8080
