@@ -1,4 +1,4 @@
-# Mention Suggestion Example using AutoComplete Plugin Creator
+# Issue Suggestion Example
 
 This example shows how to build a github issue style autocompletion plugin for draft-js-plugins
 
