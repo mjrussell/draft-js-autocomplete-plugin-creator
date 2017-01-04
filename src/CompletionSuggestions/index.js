@@ -4,7 +4,7 @@ import decodeOffsetKey from '../utils/decodeOffsetKey';
 import { genKey } from 'draft-js';
 import getSearchText from '../utils/getSearchText';
 
-export default function (addModifier, Entry, suggestionsThemeKey) {
+export default function (addModifier, Entry, suggestionsThemeKey, trigger) {
   return class CompletionSuggestions extends Component {
 
     static propTypes = {
@@ -149,7 +149,7 @@ export default function (addModifier, Entry, suggestionsThemeKey) {
 
     onSearchChange = (editorState, selection) => {
       const { word } = getSearchText(editorState, selection);
-      const searchValue = word.substring(1, word.length);
+      const searchValue = word.substring(trigger.length, word.length);
       if (this.lastSearchValue !== searchValue) {
         this.lastSearchValue = searchValue;
         this.props.onSearchChange({ value: searchValue });
