@@ -11,6 +11,7 @@ const createCompletionPlugin = (
   SuggestionEntry,
   suggestionsThemeKey = 'completionSuggestions',
   additionalDecorators = [],
+  trigger = '@'
 ) => (config = {}) => {
   const callbacks = {
     keyBindingFn: undefined,
@@ -74,7 +75,7 @@ const createCompletionPlugin = (
     entityMutability: config.entityMutability ? config.entityMutability : 'SEGMENTED',
     positionSuggestions,
   };
-  const CompletionSuggestions = completionSuggestionsCreator(addModifier, SuggestionEntry, suggestionsThemeKey);
+  const CompletionSuggestions = completionSuggestionsCreator(addModifier, SuggestionEntry, suggestionsThemeKey, trigger);
   return {
     CompletionSuggestions: decorateComponentWithProps(CompletionSuggestions, completionSearchProps),
     decorators: [
