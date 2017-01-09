@@ -38,16 +38,22 @@ module.exports = {
   ]
 }
 
-// This will make the redux-auth-wrapper module resolve to the
+// This will make the draft-js-autocomplete-plugin-creator module resolve to the
 // latest src instead of using it from npm. Remove this if running
 // outside of the source.
 const src = path.join(__dirname, '..', '..', 'src')
 if (fs.existsSync(src)) {
   // Use the latest src
-  module.exports.resolve = { alias: { 'draft-js-autocomplete-plugin-creator': src } }
+  module.exports.resolve = {
+    root: [
+      path.join(__dirname, 'node_modules'),
+      path.join(__dirname, '..', '..', 'node_modules')
+    ],
+    alias: { 'draft-js-autocomplete-plugin-creator': src }
+  };
   module.exports.module.loaders.push({
     test: /\.js$/,
     loaders: [ 'babel' ],
     include: src
-  })
+  });
 }

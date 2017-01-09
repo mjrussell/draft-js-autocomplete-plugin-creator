@@ -25,7 +25,7 @@
     "react-component"
   ],
   "peerDependencies": {
-    "draft-js": ">=0.5.0",
+    "draft-js": ">=0.9.1",
     "immutable": ">=3.7.6",
     "react": ">=0.14.0 || 15.0.0-rc",
     "react-dom": ">=0.14.0 || 15.0.0-rc"

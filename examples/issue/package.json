@@ -2,7 +2,11 @@
   "name": "issue-plugin-example",
   "version": "0.0.0",
   "dependencies": {
-    "draft-js-plugins-editor": "^1.1.0"
+    "draft-js-plugins-editor": "^1.1.0",
+    "draft-js": "^0.9.1",
+    "immutable": ">=3.7.6",
+    "react": "15.1.0",
+    "react-dom": "15.1.0"
   },
   "devDependencies": {
     "css-loader": "^0.23.1",
@@ -11,6 +15,7 @@
     "node-sass": "^3.8.0",
     "sass-loader": "^4.0.0",
     "style-loader": "^0.13.1",
+    "webpack": "^1.13.1",
     "webpack-dev-server": "^1.14.1"
   },
   "scripts": {
