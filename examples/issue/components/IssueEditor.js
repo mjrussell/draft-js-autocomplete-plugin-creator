@@ -36,7 +36,7 @@ export default class IssueEditor extends React.Component {
     };
   }
 
-  onChange = (editorState, cb) => this.setState({ editorState }, cb);
+  onChange = (editorState) => this.setState({ editorState });
 
   onIssueSearchChange = ({ value }) => {
     this.setState({
