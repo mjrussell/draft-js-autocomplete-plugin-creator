@@ -39,8 +39,9 @@ export default class IssueEditor extends React.Component {
   onChange = (editorState, cb) => this.setState({ editorState }, cb);
 
   onIssueSearchChange = ({ value }) => {
+    const searchValue = value.substring(1, value.length);
     this.setState({
-      suggestions: defaultSuggestionsFilter(value, suggestions),
+      suggestions: defaultSuggestionsFilter(searchValue, suggestions),
     });
   };
 
