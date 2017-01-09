@@ -148,8 +148,8 @@ export default function (addModifier, Entry, suggestionsThemeKey) {
     };
 
     onSearchChange = (editorState, selection) => {
-      const { word } = getSearchText(editorState, selection);
-      const searchValue = word.substring(1, word.length);
+      const searchText = getSearchText(editorState, selection);
+      const searchValue = searchText.word;
       if (this.lastSearchValue !== searchValue) {
         this.lastSearchValue = searchValue;
         this.props.onSearchChange({ value: searchValue });
