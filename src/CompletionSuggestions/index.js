@@ -43,6 +43,10 @@ export default function (addModifier, Entry, suggestionsThemeKey) {
           });
         }
 
+        if (!this.props.store.getAllSearches().has(this.activeOffsetKey)) {
+          return;
+        }
+
         const decoratorRect = this.props.store.getPortalClientRect(this.activeOffsetKey);
         const newStyles = this.props.positionSuggestions({
           decoratorRect,
