@@ -4,7 +4,12 @@ import decodeOffsetKey from '../utils/decodeOffsetKey';
 import { genKey } from 'draft-js';
 import getSearchText from '../utils/getSearchText';
 
-export default function (addModifier, Entry, suggestionsThemeKey) {
+export default function (
+  addModifier,
+  Entry,
+  suggestionsThemeKey,
+  selectionPredicate,
+) {
   return class CompletionSuggestions extends Component {
 
     static propTypes = {
@@ -101,15 +106,12 @@ export default function (addModifier, Entry, suggestionsThemeKey) {
         return removeList();
       }
 
-      // Checks that the cursor is after the 'autocomplete' character but still somewhere in
-      // the word (search term). Setting it to allow the cursor to be left of
-      // the 'autocomplete character' causes troubles due selection confusion.
+      // Checks that the cursor is somewhere in the word (search term).
       const selectionIsInsideWord = leaves
         .filter((leave) => leave !== undefined)
-        .map(({ start, end }) => (
-          start === 0 && anchorOffset === 1 && anchorOffset <= end || // @ is the first character
-          anchorOffset > start + 1 && anchorOffset <= end // @ is in the text or at the end
-        ));
+        .map(({ start, end }) => {
+          return selectionPredicate({ start, end, anchorOffset });
+        });
 
       if (selectionIsInsideWord.every((isInside) => isInside === false)) return removeList();
 
