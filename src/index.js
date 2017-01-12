@@ -11,8 +11,8 @@ const createCompletionPlugin = (
   addModifier,
   SuggestionEntry,
   suggestionsThemeKey = 'completionSuggestions',
-  selectionPredicate = defaultSelectionPredicate,
   additionalDecorators = [],
+  selectionPredicate = defaultSelectionPredicate,
 ) => (config = {}) => {
   const callbacks = {
     keyBindingFn: undefined,

@@ -18,6 +18,7 @@ const createIssueSuggestionPlugin = (config = {}) => {
     addIssueModifier,
     IssueEntry,
     'issueSuggestions',
+    [], // additional decorators
     issueSelectionPredicate,
   );
   const configWithTheme = {
