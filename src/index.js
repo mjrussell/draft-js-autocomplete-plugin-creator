@@ -115,3 +115,4 @@ const createCompletionPlugin = (
 export default createCompletionPlugin;
 
 export const defaultSuggestionsFilter = suggestionsFilter;
+export getSearchText from './utils/getSearchText';
