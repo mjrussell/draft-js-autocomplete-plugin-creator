@@ -194,6 +194,9 @@ export default function (addModifier, Entry, suggestionsThemeKey) {
     };
 
     onCompletionSelect = (completion) => {
+      if (!completion) {
+        return;
+      }
       this.closeDropdown();
       const newEditorState = addModifier(
         this.props.store.getEditorState(),
