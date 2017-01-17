@@ -24,6 +24,10 @@ const suggestions = fromJS([
     id: 3,
     subject: 'Improve Documentation',
   },
+  {
+    id: 11,
+    subject: 'Upgrade Version',
+  },
 ]);
 
 export default class IssueEditor extends React.Component {
