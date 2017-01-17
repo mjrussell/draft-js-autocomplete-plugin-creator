@@ -2,7 +2,7 @@
   "name": "issue-plugin-example",
   "version": "0.0.0",
   "dependencies": {
-    "draft-js-plugins-editor": "^1.1.0",
+    "draft-js-plugins-editor": "2.0.0-beta9",
     "draft-js": "^0.9.1",
     "immutable": ">=3.7.6",
     "react": "15.1.0",
