@@ -4,6 +4,7 @@ import decorateComponentWithProps from 'decorate-component-with-props';
 import { Map } from 'immutable';
 import suggestionsFilter from './utils/defaultSuggestionsFilter';
 import defaultPositionSuggestions from './utils/positionSuggestions';
+import defaultSelectionPredicate from './utils/defaultSelectionPredicate';
 
 const createCompletionPlugin = (
   completionSuggestionsStrategy,
@@ -11,6 +12,7 @@ const createCompletionPlugin = (
   SuggestionEntry,
   suggestionsThemeKey = 'completionSuggestions',
   additionalDecorators = [],
+  selectionPredicate = defaultSelectionPredicate,
 ) => (config = {}) => {
   const callbacks = {
     keyBindingFn: undefined,
@@ -74,7 +76,12 @@ const createCompletionPlugin = (
     entityMutability: config.entityMutability ? config.entityMutability : 'SEGMENTED',
     positionSuggestions,
   };
-  const CompletionSuggestions = completionSuggestionsCreator(addModifier, SuggestionEntry, suggestionsThemeKey);
+  const CompletionSuggestions = completionSuggestionsCreator(
+    addModifier,
+    SuggestionEntry,
+    suggestionsThemeKey,
+    selectionPredicate,
+  );
   return {
     CompletionSuggestions: decorateComponentWithProps(CompletionSuggestions, completionSearchProps),
     decorators: [
@@ -115,3 +122,4 @@ const createCompletionPlugin = (
 export default createCompletionPlugin;
 
 export const defaultSuggestionsFilter = suggestionsFilter;
+export getSearchText from './utils/getSearchText';
