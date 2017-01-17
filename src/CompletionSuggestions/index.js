@@ -210,7 +210,7 @@ export default function (addModifier, Entry, suggestionsThemeKey) {
 
     commitSelection = () => {
       this.onCompletionSelect(this.props.suggestions.get(this.state.focusedOptionIndex));
-      return 'handled';
+      return true;
     };
 
     openDropdown = () => {
