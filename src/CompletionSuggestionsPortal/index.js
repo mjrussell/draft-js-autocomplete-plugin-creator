@@ -6,8 +6,8 @@ export default class CompletionSuggestionsPortal extends Component {
     this.props.store.register(this.props.offsetKey);
     this.updatePortalClientRect(this.props);
 
-    // trigger a re-render so the MentionSuggestions becomes active
-    this.props.setEditorState(this.props.getEditorState());
+    // Trigger a re-render so the plugin becomes visible if necessary
+    this.reRender();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -16,6 +16,13 @@ export default class CompletionSuggestionsPortal extends Component {
 
   componentWillUnmount() {
     this.props.store.unregister(this.props.offsetKey);
+
+    // Trigger a re-render so the plugin becomes hidden if necessary
+    this.reRender();
+  }
+
+  reRender() {
+    this.props.setEditorState(this.props.getEditorState());
   }
 
   updatePortalClientRect(props) {
