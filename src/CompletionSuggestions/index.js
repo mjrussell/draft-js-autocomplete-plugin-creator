@@ -107,8 +107,8 @@ export default function (addModifier, Entry, suggestionsThemeKey, trigger) {
       const selectionIsInsideWord = leaves
         .filter((leave) => leave !== undefined)
         .map(({ start, end }) => (
-          start === 0 && anchorOffset === 1 && anchorOffset <= end || // @ is the first character
-          anchorOffset > start + 1 && anchorOffset <= end // @ is in the text or at the end
+          start === 0 && anchorOffset === trigger.length && anchorOffset <= end || // @ is the first character
+          anchorOffset > start + trigger.length && anchorOffset <= end // @ is in the text or at the end
         ));
 
       if (selectionIsInsideWord.every((isInside) => isInside === false)) return removeList();
