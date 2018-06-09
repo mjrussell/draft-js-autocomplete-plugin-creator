@@ -2,11 +2,11 @@
   "name": "issue-plugin-example",
   "version": "0.0.0",
   "dependencies": {
-    "draft-js-plugins-editor": "2.0.0-beta9",
-    "draft-js": "^0.9.1",
+    "draft-js-plugins-editor": "2.0.8",
+    "draft-js": "^0.10.5",
     "immutable": ">=3.7.6",
-    "react": "15.1.0",
-    "react-dom": "15.1.0"
+    "react": "16.4.0",
+    "react-dom": "16.4.0"
   },
   "devDependencies": {
     "css-loader": "^0.23.1",
