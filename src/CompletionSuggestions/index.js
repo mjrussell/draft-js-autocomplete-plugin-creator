@@ -264,10 +264,20 @@ export default function (addModifier, Entry, suggestionsThemeKey) {
         return null;
       }
 
-      const { theme = {} } = this.props;
+      const {
+        onSearchChange, // eslint-disable-line no-unused-vars, no-shadow
+        suggestions, // eslint-disable-line no-unused-vars
+        ariaProps, // eslint-disable-line no-unused-vars
+        callbacks, // eslint-disable-line no-unused-vars
+        theme = {},
+        store, // eslint-disable-line no-unused-vars
+        entityMutability, // eslint-disable-line no-unused-vars
+        positionSuggestions, // eslint-disable-line no-unused-vars
+        ...elementProps,
+      } = this.props;
       return (
         <div
-          {...this.props}
+          {...elementProps}
           className={ theme[suggestionsThemeKey] }
           role="listbox"
           id={ `completions-list-${this.key}` }
