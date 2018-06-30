@@ -4,6 +4,7 @@ import issueSuggestionsStrategy from './findIssueSuggestionStrategy';
 import suggestionsFilter from './issueSuggestionsFilter';
 import addIssueModifier from './addIssueModifier';
 import IssueEntry from './IssueEntry';
+import issueSelectionPredicate from './issueSelectionPredicate';
 
 import './issueSuggestionsEntryStyles.scss';
 import './issueSuggestionsStyles.scss';
@@ -17,6 +18,8 @@ const createIssueSuggestionPlugin = (config = {}) => {
     addIssueModifier,
     IssueEntry,
     'issueSuggestions',
+    [], // additional decorators
+    issueSelectionPredicate,
   );
   const configWithTheme = {
     theme: defaultTheme,

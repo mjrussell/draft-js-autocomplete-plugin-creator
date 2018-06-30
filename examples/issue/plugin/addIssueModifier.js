@@ -1,6 +1,6 @@
 import { Modifier, EditorState } from 'draft-js';
 
-import getSearchText from './utils/getSearchText';
+import { getSearchText } from 'draft-js-autocomplete-plugin-creator';
 
 export default (editorState, issue) => {
   const currentSelectionState = editorState.getSelection();
